@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import Producto from './components/Producto'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Filtros from './components/Filtros'
 import './App.css'
+import ListadoProductos from './components/ListadoProductos'
 
 function App() {
 
@@ -33,24 +32,24 @@ function App() {
   },
   {
       id:4,
-      product_name:'Brocoli',
-      price:120,
+      product_name:'Brocoli Frances',
+      price:100,
       currency:"$",
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg"
   },
 
   {
       id:5,
-      product_name:'Zapallo',
-      price:90,
+      product_name:'Zapallo Koreano',
+      price:97,
       currency:"$",
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/pumpkin.jpg"
   },
 
   {
       id:6,
-      product_name:'Cebolla',
-      price:40,
+      product_name:'Cebolla Ukraniana',
+      price:45,
       currency:"$",
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/onion.jpg"
   }
@@ -62,11 +61,20 @@ function App() {
 
   const [ sumar, setSumar ] = useState(0)
 
+  const [filtro, setFiltro] = useState('')
+  const [productosFiltrados, setProductosFiltrados] = useState([])
+
   useEffect(() => {
     setSumar(() => 
       (carrito.reduce(function (ant,act) { return ant + act.price}, 0)), [])
   })
 
+  useEffect(() => {
+    if(filtro) {
+      const productoFiltrado = productos.filter( producto => producto.product_name === filtro)
+      setProductosFiltrados(productoFiltrado)
+    }
+  }, [filtro])
 
 
   return (
@@ -76,23 +84,18 @@ function App() {
         setCarrito={setCarrito}
         sumar={sumar}
         setSumar={setSumar}
+        filtro={filtro}
+        setFiltro={setFiltro}
       />
-      
-        <div className="max-w-5xl mx-auto">
-        <h3 className='text-lg font-bold text-green-700'>Productos</h3>
-        <div className="grid grid-cols-4 gap-6">
-        {productos.map((producto) => (
-          <Producto
-            key={producto.id}
-            producto={producto}
-            carrito={carrito}
-            setCarrito={setCarrito}
-            productos={productos}
-          />
-        ))}
-          </div>
-          <Footer />
-        </div>
+      <ListadoProductos 
+        productos={productos}
+        filtro={filtro}
+        productosFiltrados={productosFiltrados}
+        carrito={carrito}
+        setCarrito={setCarrito}
+      />
+       
+      <Footer />
        
 
         

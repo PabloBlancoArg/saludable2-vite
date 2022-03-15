@@ -1,9 +1,7 @@
-import React from 'react'
-
 const Footer = () => {
   return (
-    <div className='py-1 bg-gray-400'>
-        <h1 className='font-bold'>Repo: <a href='github'>Repot</a></h1>
+    <div className='py-3 mt-5 bg-gray-100 max-w mx-auto'>
+        <h1 className='font-bold max-w-5xl mx-auto text-green-800 text-center'><a href='https://github.com/PabloBlancoArg/saludable2-vite'>https://github.com/PabloBlancoArg/saludable2-vite</a></h1>
     </div>
   )
 }

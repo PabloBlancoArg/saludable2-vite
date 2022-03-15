@@ -1,10 +1,9 @@
-import BarraBusqueda from './BarraBusqueda'
 import Carrito from './Carrito'
 import Filtros from './Filtros'
 
-const Header = ({carrito, setCarrito, sumar, setSumar}) => {
+const Header = ({carrito, setCarrito, sumar, setSumar, filtro, setFiltro}) => {
   return (
-    <nav className="bg-gray-100">
+    <nav className="bg-gray-100 shadow-xl">
         <div className='max-w-5xl mx-auto mb-5'>
             <div className='flex justify-between'>
 
@@ -18,7 +17,10 @@ const Header = ({carrito, setCarrito, sumar, setSumar}) => {
                 </div>
                     
                 
-                <Filtros />
+                <Filtros
+                    filtro={filtro}
+                    setFiltro={setFiltro}    
+                />
                 <Carrito 
                     carrito={carrito}
                     setCarrito={setCarrito}
