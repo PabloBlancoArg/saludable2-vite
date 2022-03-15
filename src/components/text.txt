@@ -1,0 +1,1 @@
+(carrito.map((producto => <Producto key={producto.id} producto={producto} carrito={carrito} setCarrito={setCarrito}/>)))}
