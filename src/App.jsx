@@ -71,7 +71,7 @@ function App() {
 
   useEffect(() => {
     if(filtro) {
-      const productoFiltrado = productos.filter( producto => producto.product_name === filtro)
+      const productoFiltrado = productos.filter( producto => [producto.product_name, producto.price].join(" ").toLocaleLowerCase().includes(filtro.toLocaleLowerCase()))
       setProductosFiltrados(productoFiltrado)
     }
   }, [filtro])
