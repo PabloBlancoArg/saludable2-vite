@@ -7,7 +7,7 @@ const Producto = ({producto, carrito, setCarrito, productos}) => {
   const [ isSelected, setIsSelected] = useState(false)
 
   const addProducto = (id) => {
-    const producto = productos.filter((producto) => producto.id === id);
+    const producto = productos.filter((producto) => producto.id === id );
     setCarrito([...carrito, ...producto]);
     setIsSelected(true)
   }
@@ -15,8 +15,8 @@ const Producto = ({producto, carrito, setCarrito, productos}) => {
   const delProducto = (id) => {
     const productos = carrito.filter((producto) => producto.id !== id)
     setCarrito(productos)
+    setIsSelected(false)
   }
-
 
   const aumentaCantidad = () => {
     setCantidad(cantidad + 1);
@@ -26,7 +26,7 @@ const Producto = ({producto, carrito, setCarrito, productos}) => {
     cantidad > 0 ? setCantidad(cantidad - 1) : null;
   };
 
-
+  
 
   return (
     <div key={id}>
