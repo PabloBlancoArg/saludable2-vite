@@ -4,6 +4,8 @@ import Footer from './components/Footer'
 import ModalCarrito from './components/ModalCarrito'
 import './App.css'
 import ListadoProductos from './components/ListadoProductos'
+import UserModal from './components/UserModal'
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
 
@@ -11,8 +13,9 @@ function App() {
     {
       id:1,
       product_name:'Brocoli',
-      price:120,
+      price:5120,
       currency:"$",
+      category:"Living",
       qty:0,
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg"
   },
@@ -20,8 +23,9 @@ function App() {
   {
       id:2,
       product_name:'Zapallo',
-      price:90,
+      price:590,
       currency:"$",
+      category:"Living",
       qty:0,
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/pumpkin.jpg"
   },
@@ -29,16 +33,18 @@ function App() {
   {
       id:3,
       product_name:'Cebolla',
-      price:40,
+      price:540,
       currency:"$",
+      category:"Living",
       qty:0,
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/onion.jpg"
   },
   {
       id:4,
       product_name:'Brocoli Frances',
-      price:100,
+      price:5100,
       currency:"$",
+      category:"Living",
       qty:0,
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg"
   },
@@ -46,8 +52,9 @@ function App() {
   {
       id:5,
       product_name:'Zapallo Koreano',
-      price:97,
+      price:597,
       currency:"$",
+      category:"Living",
       qty:0,
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/pumpkin.jpg"
   },
@@ -55,8 +62,9 @@ function App() {
   {
       id:6,
       product_name:'Cebolla Ukraniana',
-      price:45,
+      price:545,
       currency:"$",
+      category:"Living",
       qty:0,
       thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/onion.jpg"
   }
@@ -67,6 +75,7 @@ function App() {
   const [ carrito, setCarrito ] = useState([])
   const [ sumar, setSumar ] = useState(0)
   const [ modalCarrito, setModalCarrito ] = useState(false)
+  const [ modalUser, setModalUser] = useState(false)
   const [ filtro, setFiltro ] = useState('')
   const [ productosFiltrados, setProductosFiltrados ] = useState([])
 
@@ -88,8 +97,10 @@ function App() {
       <Header 
         carrito={carrito}
         setCarrito={setCarrito}
-        setModalCarrito={setModalCarrito}
         modalCarrito={modalCarrito}
+        setModalCarrito={setModalCarrito}
+        modalUser={modalUser}
+        setModalUser={setModalUser}
         sumar={sumar}
         setSumar={setSumar}
         filtro={filtro}
