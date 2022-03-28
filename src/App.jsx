@@ -1,132 +1,48 @@
-import { useState, useEffect } from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import ModalCarrito from './components/ModalCarrito'
 import './App.css'
-import ListadoProductos from './components/ListadoProductos'
-import UserModal from './components/UserModal'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import IniciarSesion from './layout/IniciarSesion'
+import Layout from './layout/Layout'
+import LoginForm from './paginas/LoginForm'
+import Inicio from './paginas/Inicio'
+import Organizaciones from './layout/Organizaciones'
+import NewOrganizacion from './paginas/NewOrganizacion'
+import ShowCarrito from './paginas/ShowCarrito'
+import ShowUser from './paginas/ShowUser'
+import LayoutCarrito from './layout/LayoutCarrito'
+import LayoutTienda from './layout/LayoutTienda'
 
 function App() {
 
-  const [productos, setProductos] = useState([
-    {
-      id:1,
-      product_name:'Brocoli',
-      price:5120,
-      currency:"$",
-      category:"Living",
-      qty:0,
-      thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg"
-  },
-
-  {
-      id:2,
-      product_name:'Zapallo',
-      price:590,
-      currency:"$",
-      category:"Living",
-      qty:0,
-      thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/pumpkin.jpg"
-  },
-
-  {
-      id:3,
-      product_name:'Cebolla',
-      price:540,
-      currency:"$",
-      category:"Living",
-      qty:0,
-      thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/onion.jpg"
-  },
-  {
-      id:4,
-      product_name:'Brocoli Frances',
-      price:5100,
-      currency:"$",
-      category:"Living",
-      qty:0,
-      thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620046/dummy-products/broccoli.jpg"
-  },
-
-  {
-      id:5,
-      product_name:'Zapallo Koreano',
-      price:597,
-      currency:"$",
-      category:"Living",
-      qty:0,
-      thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/pumpkin.jpg"
-  },
-
-  {
-      id:6,
-      product_name:'Cebolla Ukraniana',
-      price:545,
-      currency:"$",
-      category:"Living",
-      qty:0,
-      thumb: "https://res.cloudinary.com/sivadass/image/upload/v1493620045/dummy-products/onion.jpg"
-  }
-
-
-  ])
-
-  const [ carrito, setCarrito ] = useState([])
-  const [ sumar, setSumar ] = useState(0)
-  const [ modalCarrito, setModalCarrito ] = useState(false)
-  const [ modalUser, setModalUser] = useState(false)
-  const [ filtro, setFiltro ] = useState('')
-  const [ productosFiltrados, setProductosFiltrados ] = useState([])
-
-  useEffect(() => {
-    setSumar(() => 
-      (carrito.reduce(function (ant,act) { return ant + act.price}, 0)), [])
-  })
-
-  useEffect(() => {
-    if(filtro) {
-      const productoFiltrado = productos.filter( producto => [producto.product_name, producto.price].join(" ").toLocaleLowerCase().includes(filtro.toLocaleLowerCase()))
-      setProductosFiltrados(productoFiltrado)
-    }
-  }, [filtro])
-
-
+  
   return (
     <>
-      <Header 
-        carrito={carrito}
-        setCarrito={setCarrito}
-        modalCarrito={modalCarrito}
-        setModalCarrito={setModalCarrito}
-        modalUser={modalUser}
-        setModalUser={setModalUser}
-        sumar={sumar}
-        setSumar={setSumar}
-        filtro={filtro}
-        setFiltro={setFiltro}
-      />
-      <div className="py-[200px] bg-left-top bg-cover bg-no-repeat bg-[url('/src/assets/images/bannerDesktop.png')]">
-        <h1 className='inline ml-10 px-[100px] uppercase text-lg font-bold'>20 AñOS CONSTRUYENDO</h1>
-        <h1 className='ml-10 px-[100px] uppercase text-lg font-bold'>El HOGAR DE TUS SUEñOs</h1>
-      </div>
+      <BrowserRouter>
+      <Routes>
 
-      <ListadoProductos 
-        productos={productos}
-        filtro={filtro}
-        productosFiltrados={productosFiltrados}
-        carrito={carrito}
-        setCarrito={setCarrito}
-      />
-      { modalCarrito && <ModalCarrito  
-                          setModalCarrito={setModalCarrito}
-                          modalCarrito={modalCarrito}
-                          carrito={carrito}
-                          />}
-      <Footer />
-       
+        <Route path="/" element={<IniciarSesion />}>
+          <Route index element={<LoginForm/>} />
+        </Route >
 
         
+        <Route path="/o" element={<Organizaciones />}>
+          <Route index element={<Inicio />} />
+          
+          <Route path="tienda" element={<Layout />} >
+            <Route index element={<LayoutTienda/>} />
+              <Route path="cart" element={<LayoutCarrito />} >
+                <Route index element={<ShowCarrito />} />
+            </Route>
+            <Route path="login" element={<LoginForm/>} />
+          </Route>
+         
+         
+          <Route path="user" element={<ShowUser />} />
+          <Route path="nueva" element={<NewOrganizacion />} />
+          
+        </Route>
+        
+      </Routes>
+    </BrowserRouter>        
     </>
   )
 }

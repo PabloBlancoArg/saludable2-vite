@@ -1,54 +1,33 @@
 import LogoIcon from "../assets/LogoIcon";
 import MenuIcon from "../assets/MenuIcon";
-import Carrito from "./Carrito";
 import Filtros from "./Filtros";
 import UserIcon from "../assets/UserIcon";
 import ShoppingCart from "../assets/ShoppingCart";
+import { Link } from "react-router-dom";
 
-const Header = ({
-  carrito,
-  setCarrito,
-  modalUser,
-  setModalUser,
-  sumar,
-  setSumar,
-  filtro,
-  setFiltro,
-  modalCarrito,
-  setModalCarrito,
-}) => {
+const Header = ({ carrito, filtro, setFiltro, setModalCarrito }) => {
   const handleCarrito = () => {
     setModalCarrito(true);
   };
 
-  const handleModalUser = () => {
-    console.log("tocaste user");
-    setModalUser(true);
-  };
-
   return (
-    <nav className="bg-white shadow-xl">
-      <div className="max-w px-8">
+    <nav className="bg-white shadow-md">
+      <div className="container mx-auto">
         <div className="flex justify-between">
           <div className="flex space-x-4">
             <div className="flex items-center">
-              <a href="#" className="items-center flex py-4 px-2">
+              <Link to="#" className="items-center flex py-4">
                 <span className="hover:bg-gray-200 rounded-lg py-2.5 center">
                   <MenuIcon />
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 
           <div>
-            <a
-              href="#"
-              className="block items-center pl-10 py-4 text-black-700"
-            >
-              <span className="center">
-                <LogoIcon />
-              </span>
-            </a>
+            <Link to="/o/tienda" className="block pt-4 text-black-700">
+              <LogoIcon />
+            </Link>
           </div>
 
           <div className="flex">
@@ -68,27 +47,29 @@ const Header = ({
               >
                 <ul className="py-1" aria-labelledby="dropdown">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/o/login"
                       className="text-sm font-bold hover:bg-gray-100 text-gray-700 block px-4 py-2"
                     >
                       Iniciar Sesion
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/"
                       className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
                     >
                       Registrate
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
-              <button className="hover:bg-gray-200  rounded-lg px-4 py-2.5"
-                        onClick={handleCarrito}>
-                <ShoppingCart carrito={carrito}/>
-              </button>
+              <Link
+                className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                to="/o/tienda/cart"
+              >
+                <ShoppingCart carrito={carrito} />
+              </Link>
             </div>
           </div>
         </div>
