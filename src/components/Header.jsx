@@ -5,11 +5,8 @@ import UserIcon from "../assets/UserIcon";
 import ShoppingCart from "../assets/ShoppingCart";
 import { Link } from "react-router-dom";
 
-const Header = ({ carrito, filtro, setFiltro, setModalCarrito }) => {
-  const handleCarrito = () => {
-    setModalCarrito(true);
-  };
-
+const Header = ({ filtro, setFiltro }) => {
+  
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto">
@@ -68,7 +65,7 @@ const Header = ({ carrito, filtro, setFiltro, setModalCarrito }) => {
                 className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
                 to="/o/tienda/cart"
               >
-                <ShoppingCart carrito={carrito} />
+                <ShoppingCart />
               </Link>
             </div>
           </div>

@@ -7,16 +7,11 @@ const Layout = () => {
   
   const [carrito, setCarrito] = useState([]);
   const [sumar, setSumar] = useState(0);
-  const [modalCarrito, setModalCarrito] = useState(false);
   const [ modalUser, setModalUser] = useState(false)
   const [ filtro, setFiltro ] = useState('')
   const [ productosFiltrados, setProductosFiltrados ] = useState([])
 
 
-  useEffect(() => {
-    setSumar(() => 
-      (carrito.reduce(function (ant,act) { return ant + act.price}, 0)), [])
-  })
 
   useEffect(() => {
     if(filtro) {
@@ -27,18 +22,12 @@ const Layout = () => {
   return (
     <>
       <Header
-        carrito={carrito}
-        setCarrito={setCarrito}
-        modalCarrito={modalCarrito}
-        setModalCarrito={setModalCarrito}
         modalUser={modalUser}
         setModalUser={setModalUser}
-        sumar={sumar}
-        setSumar={setSumar}
         filtro={filtro}
         setFiltro={setFiltro}
       />
-      <Outlet />
+      <Outlet/>
       <Footer />
     </>
   );

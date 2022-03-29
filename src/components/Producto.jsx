@@ -1,30 +1,25 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from 'react-router-dom'
+import StoreContext from "../context/StoreProvider";
 
-const Producto = ({ producto, carrito, setCarrito, productos }) => {
+const Producto = ({producto}) => {
   const { product_name, price, thumb, currency, category, id } = producto;
   const [cantidad, setCantidad] = useState(1);
   const [isSelected, setIsSelected] = useState(false);
+  const { cart, setCart, productos, setSumar } = useContext(StoreContext)
 
   const addProducto = (id) => {
     const producto = productos.filter((producto) => producto.id === id);
-    setCarrito([...carrito, ...producto]);
+    setCart([...cart, ...producto]);
     setIsSelected(true);
   };
 
   const delProducto = (id) => {
-    const productos = carrito.filter((producto) => producto.id !== id);
-    setCarrito(productos);
+    const productos = cart.filter((producto) => producto.id !== id);
+    setCart(productos);
     setIsSelected(false);
   };
 
-  const aumentaCantidad = () => {
-    setCantidad(cantidad + 1);
-  };
-
-  const restaCantidad = () => {
-    cantidad > 0 ? setCantidad(cantidad - 1) : null;
-  };
 
   return (
     <div key={id} className='group'>

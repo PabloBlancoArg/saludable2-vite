@@ -1,6 +1,9 @@
-import { useEffect } from "react";
+import { useContext } from "react"
+import StoreContext from "../context/StoreProvider";
 
-const ShoppingCart = ({carrito, setCarrito}) => {
+const ShoppingCart = () => {
+
+  const { cart } = useContext(StoreContext)
 
   return (
     <div className="flex">
@@ -16,8 +19,8 @@ const ShoppingCart = ({carrito, setCarrito}) => {
           fill="black"
         />
       </svg>
-      { carrito.length > 0 ? ( <span className="rounded-full px-1 bg-black text-white text-[10px] text-center">
-       {carrito.length}
+      { cart.length > 0 ? ( <span className="rounded-full px-1 bg-black text-white text-[10px] text-center">
+       {cart.length}
       </span>):(null)}
      
     </div>
