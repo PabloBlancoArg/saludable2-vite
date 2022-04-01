@@ -1,7 +1,7 @@
-import LogoIcon from "../assets/LogoIcon";
-import MenuIcon from "../assets/MenuIcon";
+import LogoIcon from "../assets/icons/LogoIcon";
+import MenuIcon from "../assets/icons/MenuIcon";
 import Filtros from "./Filtros";
-import UserIcon from "../assets/UserIcon";
+import UserIcon from "../assets/icons/UserIcon";
 import ShoppingCart from "../assets/ShoppingCart";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const Header = ({ filtro, setFiltro }) => {
 
           <div>
             <Link to="/o/tienda" className="block pt-4 text-black-700">
-              <LogoIcon />
+              <LogoIcon/>
             </Link>
           </div>
 

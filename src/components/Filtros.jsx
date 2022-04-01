@@ -1,4 +1,4 @@
-import SearchIcon from "../assets/SearchIcon"
+import SearchIcon from "../assets/icons/SearchIcon"
 
 const Filtros = ({filtro, setFiltro}) => {
   return (

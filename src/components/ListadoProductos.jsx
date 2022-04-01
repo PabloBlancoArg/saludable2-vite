@@ -1,5 +1,6 @@
-import React from "react";
+import { useContext } from "react";
 import Producto from "./Producto";
+import StoreContexte from "../context/StoreProvider";
 
 const ListadoProductos = ({
   productos,
@@ -40,7 +41,7 @@ const ListadoProductos = ({
             <div className="">
               <div className="grid grid-cols-1 gap-y-5 sm:grid-cols-2 gap-x-5 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-5">
             {filtro
-              ? productosFiltrados.map((producto) => (
+              ? (productosFiltrados.map((producto) => (
                   <Producto
                     key={producto.id}
                     producto={producto}
@@ -48,7 +49,7 @@ const ListadoProductos = ({
                     setCarrito={setCarrito}
                     productos={productos}
                   />
-                ))
+                )))
               : productos.map((producto) => (
                   <Producto
                     key={producto.id}

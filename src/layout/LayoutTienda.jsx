@@ -6,10 +6,9 @@ import ListadoProductos from "../components/ListadoProductos";
 
 const LayoutTienda = () => {
 
-  const { cart, setCart, productos, setSumar } = useContext(StoreContext)
+  const { cart, setCart, productos, filtro, setSumar } = useContext(StoreContext)
 
   const [modalCarrito, setModalCarrito] = useState(false);
-  const [filtro, setFiltro] = useState("");
   const [productosFiltrados, setProductosFiltrados] = useState([]);
 
 

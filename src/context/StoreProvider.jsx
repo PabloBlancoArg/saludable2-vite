@@ -7,6 +7,42 @@ const StoreProvider = ({children}) => {
 
     const [ cart, setCart ] = useState([])
     const [ sumar, setSumar ] = useState(0);
+    const [ filtro, setFiltro ] = useState('')
+    const [ productosFiltrados, setProductosFiltrados ] = useState([])
+
+    const agregarCart = (producto) => {
+      if (cart.some((articulo) => articulo.id === producto.id)) {
+        const cartActualizado = cart.map( articulo => {
+          if(articulo.id === producto.id ) {
+            articulo.cantidad = producto.cantidad
+          }
+          console.log('duplicado')
+          return articulo
+        })
+
+        setCart(cartActualizado)
+      } else {
+        console.log('unico')
+        setCart([...cart, producto])
+      }
+
+    }
+
+    const delCart = (producto) => {
+      if (cart.some((articulo) => articulo.id === producto.id)) {
+        const cartActualizado = cart.map( articulo => {
+          if(articulo.id === producto.id ) {
+            
+          }
+          console.log('duplicado')
+          return articulo
+        })
+        setCart(cartActualizado)
+      } else {
+        console.log('unico')
+        setCart([...cart, producto])
+      }
+    }
 
     useEffect(() => {
         setSumar(
@@ -91,8 +127,14 @@ const StoreProvider = ({children}) => {
             value={{
                 cart,
                 setCart,
+                sumar,
                 setSumar,
-                productos, 
+                agregarCart,
+                productos,
+                filtro,
+                setFiltro,
+                productosFiltrados,
+                setProductosFiltrados
             }}
         >
             {children}

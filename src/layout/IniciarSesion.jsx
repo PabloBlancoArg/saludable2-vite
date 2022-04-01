@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const IniciarSesion = () => {
   return (
-    <div>IniciarSesion
+    <div className='py-2'>
         <Outlet />
     </div>
   )

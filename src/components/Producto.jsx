@@ -4,22 +4,7 @@ import StoreContext from "../context/StoreProvider";
 
 const Producto = ({producto}) => {
   const { product_name, price, thumb, currency, category, id } = producto;
-  const [cantidad, setCantidad] = useState(1);
-  const [isSelected, setIsSelected] = useState(false);
-  const { cart, setCart, productos, setSumar } = useContext(StoreContext)
-
-  const addProducto = (id) => {
-    const producto = productos.filter((producto) => producto.id === id);
-    setCart([...cart, ...producto]);
-    setIsSelected(true);
-  };
-
-  const delProducto = (id) => {
-    const productos = cart.filter((producto) => producto.id !== id);
-    setCart(productos);
-    setIsSelected(false);
-  };
-
+  const { agregarCart } = useContext(StoreContext)
 
   return (
     <div key={id} className='group'>
@@ -55,7 +40,7 @@ const Producto = ({producto}) => {
               <button
                 className="mt-2 basis-1/2 bg-white font-bold border-2 py-2 text-center text-gray-900 rounded-lg hover:bg-gray-200  hover:bg-background-gray-400"
                 type="button"
-                onClick={() => addProducto(id)}
+                onClick={() => agregarCart(producto)}
               >
                 Agregar al carrito
               </button>
